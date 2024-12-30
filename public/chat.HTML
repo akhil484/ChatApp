@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0eded;
+        }
+        #messages {
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+        #input-container {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+        }
+        #message {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            display: flex;
+    flex-wrap: wrap;
+        }
+        #send {
+            padding: 10px;
+            font-size: 16px;
+        }
+		#other_msg{
+        	width: 250px;
+            height: auto;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            word-wrap: break-word;
+            padding:10px;
+            margin-left: 3px;
+            margin-bottom: 10px;
+            justify-self: flex-start;
+            border-radius: 0px 25px 25px 25px;
+           
+        }
+        #self_msg{
+        	width: 250px;
+            height: auto;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            word-wrap: break-word;
+            padding:10px;
+            margin-left: 130px;
+            margin-bottom: 10px;
+            border-radius: 25px 25px 0px 25px;
+            justify-self: flex-end;
+        }
+
+        #joined_msg{
+            color: grey;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #first_step{
+            display: block;
+            width: 35rem;
+            background-color: white;
+            height: 25rem;
+            padding: 0.9rem;
+        }
+
+        #chat_screen{
+            display: none;
+        }
+        input[type="text"] {
+            width: 96%;
+            padding: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .input-grp label{
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .btn-style{
+            background-color: #0084ff;
+            border: white;
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            color: white;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        .btn-style:hover {
+            background: #0073e6;
+        }
+        .button-grp {
+            margin-left: 9rem;
+        }
+  
+    </style>
+</head>
+<body>
+    <div id="first_step">
+        <h2>Join Chat Room</h2>
+        <div class="input-grp">
+        <label>Username</label>
+        <input placeholder="Enter Username" id="username" type="text">
+        </div>
+        <div class="input-grp">
+        <label>Room ID</label>
+        <input placeholder="Enter Room ID" id="room_id" type="text">
+        </div>
+        <div class="button-grp">
+        <button class="create_room btn-style" onclick="createRoom()">Create Room</button>
+        <button class="join_room btn-style" onclick="joinRoom()">Join Room</button>
+        </div>
+    </div>
+
+    <div id="chat_screen">
+        <h1>Room - <span id="room"></span></h1>
+        <div id="messages"></div>
+        <div id="input-container">
+            <input type="text" id="message" placeholder="Type a message..." />
+            <button id="send">Send</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
