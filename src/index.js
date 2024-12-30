@@ -66,8 +66,18 @@ class WordFilter
 const wordFilter = new WordFilter(); 
 
 function initializeWordFilter() {
-    const abusiveWords = ['shit', 'fuck', 'fucker'];
-    abusiveWords.forEach(word => wordFilter.insertWord(word));
+    let abusiveWords = [];
+    const fileurl = "https://raw.githubusercontent.com/akhil484/projecttextfiles/refs/heads/main/words.txt";
+    fetch(fileurl).then(response => {
+        return response.text();
+    })
+    .then(data => {
+        const words_from_files = data.split("\n");
+        abusiveWords = words_from_files.map(word => word.trim());
+        abusiveWords.forEach(word => wordFilter.insertWord(word));
+    })
+    
+    
 }
 
 function mask_this_word(word)
