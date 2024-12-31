@@ -137,8 +137,7 @@ initializeWordFilter();
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-app.get('/chat', (req, res) => {
-    // Ensure the absolute path to chat.html
+app.get('/', (req, res) => {
     const filePath = path.join(__dirname, '../public/chat.html');
     res.sendFile(filePath);
 });
