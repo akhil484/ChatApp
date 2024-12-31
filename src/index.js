@@ -16,7 +16,13 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 const rooms = new Map();
 
-server.listen(port);
+server.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+
+  server.on('error', (err) => {
+    console.error('Server error:', err);
+  });
 
 class TrieNode
 {
