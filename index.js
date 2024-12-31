@@ -134,12 +134,12 @@ function check_for_abuses(message)
 initializeWordFilter();
 
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 app.get('/', (req, res) => {
-    const filePath = path.join(__dirname, '../public/chat.html');
-    res.sendFile(filePath);
+    res.sendFile(path.join(__dirname, 'public', 'chat.html'));
 });
 
 
