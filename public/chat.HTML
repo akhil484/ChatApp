@@ -16,7 +16,7 @@
         }
         #messages {
             border: 1px solid #ccc;
-            width: 100%;
+            width: 33rem;
             max-width: 600px;
             height: 300px;
             overflow-y: auto;
@@ -35,11 +35,10 @@
             padding: 10px;
             font-size: 16px;
             display: flex;
-    flex-wrap: wrap;
+            flex-wrap: wrap;
         }
         #send {
-            padding: 10px;
-            font-size: 16px;
+            padding: 0.5rem;
         }
 		#other_msg{
         	width: 250px;
@@ -109,6 +108,22 @@
         .button-grp {
             margin-left: 9rem;
         }
+        img {
+            width: 1.6rem;
+            height: 1.6rem;
+            cursor: pointer;
+        }
+        .arrow {
+            display: block;
+            background-color: #b6b643;
+            width: 2.46rem;
+            height: 2.46rem;
+            margin-left: 0.5rem;
+            border-radius: 0.2rem;
+        }
+        #room-id-text {
+            text-align: center;
+        }
   
     </style>
 </head>
@@ -130,11 +145,11 @@
     </div>
 
     <div id="chat_screen">
-        <h1>Room - <span id="room"></span></h1>
+        <h1 id="room-id-text">Room - <span id="room"></span></h1>
         <div id="messages"></div>
         <div id="input-container">
             <input type="text" id="message" placeholder="Type a message..." />
-            <button id="send">Send</button>
+            <div class="arrow"><img src="/images/send.png" id="send"></div>
         </div>
     </div>
     <script src="script.js"></script>

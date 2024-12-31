@@ -182,12 +182,24 @@ app.get('/chat', (req, res) => {
             {
                 let message_after_masking = check_for_abuses(data.message)
                 rooms.get(currentRoom).forEach((client)=>{
-                    if (client!=socket && client.readyState === WebSocket.OPEN) {
-                        client.send(JSON.stringify({
-                            type: 'message',
-                            content: message_after_masking,
-                            sender: data.sender
-                        }));
+                    if (client.readyState === WebSocket.OPEN) {
+                        if(client==socket){
+                            client.send(JSON.stringify({
+                                type: 'message',
+                                content: message_after_masking,
+                                sender: data.sender,
+                                who: 'self'
+                            }));
+                        }
+                        else
+                        {
+                            client.send(JSON.stringify({
+                                type: 'message',
+                                content: message_after_masking,
+                                sender: data.sender,
+                                who: 'other'
+                            }));
+                        }
                     }
                 })
             }

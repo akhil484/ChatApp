@@ -27,20 +27,43 @@ function createConnection()
     
         else
         {
-            message.id = "other_msg";
             
-            const newSpan = document.createElement("span");
-            newSpan.id = "uniqueName";
-            newSpan.textContent = data.sender;
-            message.appendChild(newSpan);
+            if(data.who=="self")
+            {   
+                message.id = "self_msg";
+                const newSpan = document.createElement("span");
+                newSpan.id = "uniqueName";
+                newSpan.textContent = 'You';
+                
+                
+                message.appendChild(newSpan);
+                
+                
+                const lineBreak = document.createElement('br');
+                message.appendChild(lineBreak);
+                const lineBreak2 = document.createElement('br');
+                message.appendChild(lineBreak2);
+                
+                message.appendChild(document.createTextNode(data.content));
+                
+            }
+            else{
+                message.id = "other_msg";
             
+                const newSpan = document.createElement("span");
+                newSpan.id = "uniqueName";
+                newSpan.textContent = data.sender;
+                message.appendChild(newSpan);
+                
+                
+                const lineBreak = document.createElement('br');
+                message.appendChild(lineBreak);
+                const lineBreak2 = document.createElement('br');
+                message.appendChild(lineBreak2);
+                
+                message.appendChild(document.createTextNode(data.content));
+            }
             
-            const lineBreak = document.createElement('br');
-            message.appendChild(lineBreak);
-            const lineBreak2 = document.createElement('br');
-            message.appendChild(lineBreak2);
-            
-            message.appendChild(document.createTextNode(data.content));
     
             
         }
@@ -54,23 +77,6 @@ function createConnection()
 sendButton.addEventListener('click', () => {
     const input_msg = messageInput.value;
     if (input_msg) {
-        const message = document.createElement('div');
-        message.id = "self_msg";
-        const newSpan = document.createElement("span");
-        newSpan.id = "uniqueName";
-        newSpan.textContent = 'You';
-        
-        
-        message.appendChild(newSpan);
-        
-        
-        const lineBreak = document.createElement('br');
-        message.appendChild(lineBreak);
-        const lineBreak2 = document.createElement('br');
-        message.appendChild(lineBreak2);
-        
-        message.appendChild(document.createTextNode(input_msg));
-        messagesDiv.appendChild(message);
 
         socket.send(JSON.stringify({
             type: 'message',
@@ -83,7 +89,7 @@ sendButton.addEventListener('click', () => {
     }
 });
 
-// Send a message when Enter is pressed
+
 messageInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         sendButton.click();
