@@ -73,7 +73,7 @@
         }
         #first_step{
             display: block;
-            width: 35rem;
+            width: 36%;
             background-color: white;
             height: 25rem;
             padding: 0.9rem;
@@ -124,6 +124,37 @@
         #room-id-text {
             text-align: center;
         }
+
+        @media (max-width: 562px) {
+            #messages {
+                width: 100%;
+                max-width: 600px;
+            }
+            #self_msg {
+                width: 47%;
+            }
+            #other_msg {
+                width: 50%;
+            }
+        }
+        @media (max-width:1250px) {
+            #first_step{
+            width: 70%;  
+        }
+        
+        }
+        @media (max-width: 800px){
+            .button-grp {
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            }
+            .btn-style{
+                margin-top:11px;
+            }
+        }
+        
   
     </style>
 </head>
