@@ -12,8 +12,11 @@ const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 8080;
 
 const app = express();
-const wss = new WebSocketServer({ port : port });
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server });
 const rooms = new Map();
+
+server.listen(port);
 
 class TrieNode
 {
@@ -210,5 +213,3 @@ app.get('/chat', (req, res) => {
         
     });
  })
-
- app.listen(3000);

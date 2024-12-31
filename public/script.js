@@ -6,9 +6,10 @@ let currentRoom;
 const messagesDiv = document.getElementById('messages');
 const messageInput = document.getElementById('message');
 const sendButton = document.getElementById('send');
-const wsUrl = window.location.hostname === 'localhost' 
-  ? 'ws://localhost:8080'
-  : `wss://${window.location.host}`;
+const wsUrl = location.protocol === 'https:' 
+    ? `wss://${location.host}`
+    : `ws://${location.host}`;
+
 function createConnection()
 {
     socket = new WebSocket(wsUrl);
